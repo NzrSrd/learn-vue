@@ -160,5 +160,5 @@ const parts = {
             cost: 700.5
         }
     ]
-}
+};
 export default parts
