@@ -1,19 +1,21 @@
 <template>
     <div class="content">
         <div class="preview">
-            <div class="preview-content">
-                <div class="top-row">
-                    <img :src="selectedRobot.head.src" alt=""/>
+            <CollapsibleSection>
+                <div class="preview-content">
+                    <div class="top-row">
+                        <img :src="selectedRobot.head.src"/>
+                    </div>
+                    <div class="middle-row">
+                        <img :src="selectedRobot.leftArm.src" class="rotate-left"/>
+                        <img :src="selectedRobot.torso.src"/>
+                        <img :src="selectedRobot.rightArm.src" class="rotate-right"/>
+                    </div>
+                    <div class="bottom-row">
+                        <img :src="selectedRobot.base.src"/>
+                    </div>
                 </div>
-                <div class="middle-row">
-                    <img :src="selectedRobot.leftArm.src" class="rotate-left" alt=""/>
-                    <img :src="selectedRobot.torso.src" alt=""/>
-                    <img :src="selectedRobot.rightArm.src" class="rotate-right" alt=""/>
-                </div>
-                <div class="bottom-row">
-                    <img :src="selectedRobot.base.src" alt=""/>
-                </div>
-            </div>
+            </CollapsibleSection>
         </div>
         <button class="add-to-cart" @click="addToCart"> Add to Cart</button>
         <div class="top-row">
@@ -73,11 +75,13 @@
 <script>
     import availableParts from '../data/parts';
     import PartSelector from "./PartSelector";
+    import CollapsibleSection from "../shared/CollapsibleSection";
 
     export default {
         name: "RobotBuilder",
         components: {
-            PartSelector
+            PartSelector,
+            CollapsibleSection,
         },
         data() {
             return {
@@ -92,12 +96,18 @@
                 },
             };
         },
+        computed: {
+            saleBorderClass() {
+                return this.selectedRobot.head.onSale ? 'sale-border' : ''
+            }
+        },
         methods: {
             addToCart() {
                 const robot = this.selectedRobot;
-                const cost = robot.head.cost + robot.leftArm.cost + robot.torso.cost + robot.rightArm.cost + robot.base.cost;
-                this.cart.push(Object.assign({}, robot, {cost}));
-
+                const cost = robot.head.cost + robot.leftArm.cost + robot.torso.cost + robot.rightArm.cost + robot.base.cost
+                this.cart.push(Object.assign({}, robot, {cost}))
+                // eslint-disable-next-line no-console
+                console.log(this.cart)
             },
         },
     }
@@ -133,11 +143,11 @@
     }
     .add-to-cart{
         position: absolute;
-        right: 5px;
+        right: 6px;
         width: 209px;
         padding: 3px;
         font-size: 16px;
-        bottom: -3px;
+        bottom: -31px;
     }
     .td, th {
         text-align: left;
