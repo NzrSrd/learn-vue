@@ -3,26 +3,20 @@
         <div class="preview">
             <div class="preview-content">
                 <div class="top-row">
-                    <img :src="selectedRobot.head.src"/>
+                    <img :src="selectedRobot.head.src" alt=""/>
                 </div>
                 <div class="middle-row">
-                    <img :src="selectedRobot.leftArm.src" class="rotate-left"/>
-                    <img :src="selectedRobot.torso.src"/>
-                    <img :src="selectedRobot.rightArm.src" class="rotate-right"/>
+                    <img :src="selectedRobot.leftArm.src" class="rotate-left" alt=""/>
+                    <img :src="selectedRobot.torso.src" alt=""/>
+                    <img :src="selectedRobot.rightArm.src" class="rotate-right" alt=""/>
                 </div>
                 <div class="bottom-row">
-                    <img :src="selectedRobot.base.src"/>
+                    <img :src="selectedRobot.base.src" alt=""/>
                 </div>
             </div>
         </div>
         <button class="add-to-cart" @click="addToCart"> Add to Cart</button>
         <div class="top-row">
-<!--                <div class="robot-name">-->
-<!--                    {{selectedRobot.head.title}}-->
-<!--                    <span v-if="selectedRobot.head.onSale" class="sale">-->
-<!--                        Sale!-->
-<!--                    </span>-->
-<!--                </div>-->
             <PartSelector
                     :parts="availableParts.heads"
                     position="top"
@@ -97,12 +91,6 @@
                         base: {},
                 },
             };
-        },
-        computed: {
-            saleBorderClass() {
-                return this.selectedRobot.head.onSale ? 'sale-border' : ''
-
-            }
         },
         methods: {
             addToCart() {
