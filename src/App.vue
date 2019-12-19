@@ -4,9 +4,9 @@
           <nav>
               <ul>
                   <li class="nav-item">
-                      <img class="logo" src="./assets/hello.png" alt="">
                       <router-link :to="{name: 'Home'}" class="nav-link" exact>
-                          Build a Bot
+                            <img class="logo" src="./assets/hello.png" alt="">
+                                Build a Bot
                       </router-link>
                   </li>
                   <li class="nav-item">
@@ -70,7 +70,6 @@ export default {
       color: inherit;
   }
   .router-link-active {
-      color: white;
-      background: gold;
+      color: gold;
   }
 </style>
